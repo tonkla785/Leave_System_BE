@@ -54,7 +54,27 @@ public class LeaveRequestController {
         List<LeaveRequestEntity> list = leaveRequestService.getLeaveRequestsByStatus(StatusEnum.pending);
         return ResponseEntity.ok(Map.of(
                 "responseStatus", 200,
-                "responseMessage", "Fetch approved leaves complete",
+                "responseMessage", "Fetch pending leaves complete",
+                "data", list
+        ));
+    }
+
+    @GetMapping("/get-reject-req")
+    public ResponseEntity<?> getRejectLeaves() {
+        List<LeaveRequestEntity> list = leaveRequestService.getLeaveRequestsByStatus(StatusEnum.rejected);
+        return ResponseEntity.ok(Map.of(
+                "responseStatus", 200,
+                "responseMessage", "Fetch reject leaves complete",
+                "data", list
+        ));
+    }
+
+    @GetMapping("/get-all-req")
+    public ResponseEntity<?> getAllReq() {
+        List<LeaveRequestEntity> list = leaveRequestService.getLeaveAllReq();
+        return ResponseEntity.ok(Map.of(
+                "responseStatus", 200,
+                "responseMessage", "Fetch all request complete",
                 "data", list
         ));
     }

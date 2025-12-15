@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,7 +30,17 @@ public class UserController {
         UserEntity data = userService.getUser(id);
         return ResponseEntity.ok(Map.of(
                 "responseStatus", 200,
-                "responseMessage", "Create complete",
+                "responseMessage", "get user by id complete",
+                "data", data
+        ));
+    }
+
+    @GetMapping("/get-all-user")
+    public ResponseEntity<?> getAllUser() {
+        List<UserEntity> data = userService.getAllUser();
+        return ResponseEntity.ok(Map.of(
+                "responseStatus", 200,
+                "responseMessage", "get all complete",
                 "data", data
         ));
     }

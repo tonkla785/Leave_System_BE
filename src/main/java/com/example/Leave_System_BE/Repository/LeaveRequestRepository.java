@@ -16,4 +16,9 @@ public interface LeaveRequestRepository extends JpaRepository<LeaveRequestEntity
             "JOIN FETCH leaveReq.leaveTypeEntity leaveType " +
             "WHERE leaveReq.leaveStatus = :status")
     List<LeaveRequestEntity> findByLeaveStatus(@Param("status") StatusEnum status);
+
+    @Query("SELECT leaveReq FROM LeaveRequestEntity leaveReq " +
+            "JOIN FETCH leaveReq.user u " +
+            "JOIN FETCH leaveReq.leaveTypeEntity leaveType")
+    List<LeaveRequestEntity> findAllReq();
 }

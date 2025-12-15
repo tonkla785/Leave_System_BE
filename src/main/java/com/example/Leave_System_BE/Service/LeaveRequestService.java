@@ -59,6 +59,10 @@ public class LeaveRequestService {
         return leaveRequestRepository.findByLeaveStatus(status);
     }
 
+    //get all req
+    public List<LeaveRequestEntity> getLeaveAllReq(){
+        return leaveRequestRepository.findAllReq();
+    }
 
     private LeaveRequestResponseDTO responseData(LeaveRequestEntity leaveRequest) {
         return new LeaveRequestResponseDTO(
