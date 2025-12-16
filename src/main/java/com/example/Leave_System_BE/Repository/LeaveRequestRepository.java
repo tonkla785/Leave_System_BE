@@ -13,12 +13,6 @@ import java.util.List;
 public interface LeaveRequestRepository extends JpaRepository<LeaveRequestEntity,Long> {
     @Query("SELECT leaveReq FROM LeaveRequestEntity leaveReq " +
             "JOIN FETCH leaveReq.user u " +
-            "JOIN FETCH leaveReq.leaveTypeEntity leaveType " +
-            "WHERE leaveReq.leaveStatus = :status")
-    List<LeaveRequestEntity> findByLeaveStatus(@Param("status") StatusEnum status);
-
-    @Query("SELECT leaveReq FROM LeaveRequestEntity leaveReq " +
-            "JOIN FETCH leaveReq.user u " +
             "JOIN FETCH leaveReq.leaveTypeEntity leaveType")
     List<LeaveRequestEntity> findAllReq();
 }
