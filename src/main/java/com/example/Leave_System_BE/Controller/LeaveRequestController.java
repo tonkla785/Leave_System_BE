@@ -5,6 +5,7 @@ import com.example.Leave_System_BE.DTO.LeaveRequestResponseDTO;
 import com.example.Leave_System_BE.Entity.LeaveRequestEntity;
 import com.example.Leave_System_BE.EnumType.StatusEnum;
 import com.example.Leave_System_BE.Service.LeaveRequestService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class LeaveRequestController {
     private LeaveRequestService leaveRequestService;
 
     @PostMapping("/create-request")
-    public ResponseEntity<?> createRequest(@RequestBody LeaveRequestDTO leaveRequestDTO) {
+    public ResponseEntity<?> createRequest(@RequestBody @Valid LeaveRequestDTO leaveRequestDTO) {
         LeaveRequestEntity data = leaveRequestService.createLeaveReq(leaveRequestDTO);
         return ResponseEntity.ok(Map.of(
                 "responseStatus", 200,

@@ -4,6 +4,7 @@ import com.example.Leave_System_BE.DTO.LeaveBalanceRequestDTO;
 import com.example.Leave_System_BE.DTO.LeaveBalanceResponseDTO;
 import com.example.Leave_System_BE.Entity.LeaveBalanceEntity;
 import com.example.Leave_System_BE.Service.LeaveBalanceService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class LeaveBalanceController {
     private LeaveBalanceService leaveBalanceService;
 
     @PostMapping("/create-balance")
-    public ResponseEntity<?> createBalance(@RequestBody LeaveBalanceRequestDTO leaveBalanceRequestDTO) {
+    public ResponseEntity<?> createBalance(@RequestBody @Valid LeaveBalanceRequestDTO leaveBalanceRequestDTO) {
         LeaveBalanceEntity data = leaveBalanceService.createLeaveBalance(leaveBalanceRequestDTO);
         return ResponseEntity.ok(Map.of(
                 "responseStatus", 200,
